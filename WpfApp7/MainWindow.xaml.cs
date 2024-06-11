@@ -23,47 +23,63 @@ public partial class MainWindow : Window
 {
     int click = 0;
     int PowerClick = 1; 
-    int clickPerSecond = 0;
+    int clickPerSecond = 1;
+    private int autoClicker = 0;
+    private int autoClikerCost = 10;
     private DispatcherTimer timer;
+    
     public MainWindow()
     {
         timer = new DispatcherTimer();
         timer.Interval = TimeSpan.FromSeconds(1);
-        timer
+        timer.Tick += Timer_Tick;
+        timer.Start();
         InitializeComponent();
     }
 
-    private void UpdateDisplay()
+    private void Timer_Tick(object? sender, EventArgs e)
     {
-        clickPerSecond = 
+        click += autoClicker;
     }
+    
 
     private void Click_OnClick(object sender, RoutedEventArgs e)
     {
         click += PowerClick;
         Score.Content = "Кликов: " + click.ToString();
+        
     }
     
     private void Powerup_OnClickp_OnClick(object sender, RoutedEventArgs e)
     {
-        if (click >=25)
+        if (click >=5)
         {
-            click -= 25;
-            PowerClick ++;
-            MessageBox.Show(MessageBoxButton.YesNo.ToString());
-            MessageBox.Show("POWER!" + PowerClick.ToString());
-            Score.Content = "Кликов: " + click.ToString();
+            click -= 5;
+           var result = MessageBox.Show("Need POWER?","POwer",  MessageBoxButton.YesNo, MessageBoxImage.Question);
+           if (result == MessageBoxResult.Yes)
+           {
+                MessageBox.Show("POWER!", "power " + PowerClick.ToString());
+                PowerClick ++;
+                Score.Content = "Кликов: " + click.ToString();
+           }
+           else if (result == MessageBoxResult.No)
+           {
+               MessageBox.Show("No power!?","power " );
+               click += PowerClick;
+               click += PowerClick;
+               click += PowerClick;
+               click += PowerClick;
+           }
         }
     }
 
     private void Auto_OnClick(object sender, RoutedEventArgs e)
     {
-        if (click >= 50)
+        if (click >= 10)
         {
-            click -= 50;
-            clickPerSecond++;
-            MessageBox.Show("" + clickPerSecond.ToString());
-            
+            click -= 10;
+            autoClicker++;
+            MessageBox.Show("Работяга: " + clickPerSecond.ToString());
         }
     }
 }
