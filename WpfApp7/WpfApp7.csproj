@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="NewDirectory1\maxresdefault.jpg" />
+      <None Remove="NewDirectory1\2\4746.jpg" />
+      <Resource Include="NewDirectory1\2\4746.jpg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="NewDirectory1\00004.IXH6dI6.png" />
+      <Resource Include="NewDirectory1\00004.IXH6dI6.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="NewDirectory1\68d630157d97fcdd537392e1c5a64653d3db498a031087d8331dcd44104951f3_1.jpg" />
+      <Resource Include="NewDirectory1\68d630157d97fcdd537392e1c5a64653d3db498a031087d8331dcd44104951f3_1.jpg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="NewDirectory1\maxresdefault.jpg" />
+    </ItemGroup>
+
+</Project>

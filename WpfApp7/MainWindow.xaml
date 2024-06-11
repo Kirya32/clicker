@@ -1,0 +1,26 @@
+﻿<Window x:Class="WpfApp7.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp7"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Label Name="Score" Height="50" Width="250" Margin="40"></Label>
+            <StackPanel>
+                <Button Width="250" Name="Click" Click="Click_OnClick">
+                    <Image Source="NewDirectory1/2/4746.jpg"></Image>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel>
+        <Button HorizontalAlignment="Right" Width="150" Name="Powerup" Margin="20" Click="Powerup_OnClickp_OnClick">
+            <Image Height="100" Width="150" Source="NewDirectory1/68d630157d97fcdd537392e1c5a64653d3db498a031087d8331dcd44104951f3_1.jpg"></Image>
+        </Button>
+            <TextBlock HorizontalAlignment="Right" Height="40" Width="150" FontSize="30" FontFamily="Impact">Power</TextBlock>
+            <Button HorizontalAlignment="Right" Height="50" Width="100" Name="Auto" Margin="20" Click="Auto_OnClick">AutoClick</Button>
+        </StackPanel>
+    </Grid>
+</Window>
