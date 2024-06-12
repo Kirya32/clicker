@@ -58,6 +58,7 @@ public partial class MainWindow : Window
            var result = MessageBox.Show("Need POWER?","POwer",  MessageBoxButton.YesNo, MessageBoxImage.Question);
            if (result == MessageBoxResult.Yes)
            {
+           //try click += PowerClick * 5;
                 MessageBox.Show("POWER!", "power " + PowerClick.ToString());
                 PowerClick ++;
                 Score.Content = "Кликов: " + click.ToString();
