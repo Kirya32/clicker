@@ -45,9 +45,12 @@ public partial class MainWindow : Window
 
     private void Click_OnClick(object sender, RoutedEventArgs e)
     {
+        if (click == 100)
+        {
+            MessageBox.Show("Вау, ну ты крутой","ну тип ачивка");
+        }
         click += PowerClick;
         Score.Content = "Кликов: " + click.ToString();
-        
     }
     
     private void Powerup_OnClickp_OnClick(object sender, RoutedEventArgs e)
