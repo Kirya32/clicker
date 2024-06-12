@@ -54,22 +54,29 @@ public partial class MainWindow : Window
     {
         if (click >=5)
         {
-            click -= 5;
-           var result = MessageBox.Show("Need POWER?","POwer",  MessageBoxButton.YesNo, MessageBoxImage.Question);
+           var result = MessageBox.Show("Need POWER X5?","POwer",  MessageBoxButton.YesNo, MessageBoxImage.Question);
            if (result == MessageBoxResult.Yes)
            {
-           //try click += PowerClick * 5;
-                MessageBox.Show("POWER!", "power " + PowerClick.ToString());
-                PowerClick ++;
-                Score.Content = "Кликов: " + click.ToString();
+               if (click >=25)
+               {
+                   click -= 25;
+                   MessageBox.Show("POWER!", "power " + PowerClick.ToString());
+                   PowerClick = PowerClick * 5; 
+                   Score.Content = "Кликов: " + click.ToString();
+               }
+               else
+               {
+                   var b = (click <25);
+                   MessageBox.Show("Что не хватает? Иди работай.","power");
+               }
+               
            }
            else if (result == MessageBoxResult.No)
            {
-               MessageBox.Show("No power!?","power " );
-               click += PowerClick;
-               click += PowerClick;
-               click += PowerClick;
-               click += PowerClick;
+               click -= 5;
+               PowerClick++;
+               MessageBox.Show("POWER","power " );
+               Score.Content = "Кликов: " + click.ToString();
            }
         }
     }
