@@ -47,7 +47,7 @@ public partial class MainWindow : Window
     {
         if (click == 100)
         {
-            MessageBox.Show("Вау, ну ты крутой","ну тип ачивка");
+            MessageBox.Show("Вау, ну ты крутой","тип ачивка");
         }
         click += PowerClick;
         Score.Content = "Кликов: " + click.ToString();
