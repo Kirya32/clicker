@@ -21,9 +21,11 @@ namespace WpfApp7;
 /// </summary>
 public partial class MainWindow : Window
 {
-    int click = 0;
-    int PowerClick = 1; 
+    private int click = 0;
+    int PowerClick = 1;
     int clickPerSecond = 1;
+    private int UpgradePrice = 2;
+    private int UpgradeCost = 25;
     private int autoClicker = 0;
     private int autoClikerCost = 10;
     private DispatcherTimer timer;
@@ -36,7 +38,8 @@ public partial class MainWindow : Window
         timer.Start();
         InitializeComponent();
     }
-
+    
+    
     private void Timer_Tick(object? sender, EventArgs e)
     {
         click += autoClicker;
@@ -55,24 +58,24 @@ public partial class MainWindow : Window
     
     private void Powerup_OnClickp_OnClick(object sender, RoutedEventArgs e)
     {
-        if (click >=5)
-        {
+        if (click >= 5)
+        { 
            var result = MessageBox.Show("Need POWER X5?","POwer",  MessageBoxButton.YesNo, MessageBoxImage.Question);
            if (result == MessageBoxResult.Yes)
            {
-               if (click >=25)
+               if (click >=UpgradeCost)
                {
-                   click -= 25;
+                   click -= UpgradeCost;
+                   UpgradeCost *= UpgradePrice;
                    MessageBox.Show("POWER!", "power " + PowerClick.ToString());
                    PowerClick = PowerClick * 5; 
                    Score.Content = "Кликов: " + click.ToString();
                }
                else
                {
-                   var b = (click <25);
+                   var b = (click <UpgradeCost);
                    MessageBox.Show("Что не хватает? Иди работай.","power");
                }
-               
            }
            else if (result == MessageBoxResult.No)
            {
