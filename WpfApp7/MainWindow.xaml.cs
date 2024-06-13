@@ -21,12 +21,12 @@ namespace WpfApp7;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private int click = 0;
-    int PowerClick = 1;
-    int clickPerSecond = 1;
-    private int UpgradePrice = 2;
-    private int UpgradeCost = 25;
-    private int autoClicker = 0;
+    private int click;
+    private int powerClick = 1;
+    private int clickPerSecond = 1;
+    private int upgradePrice = 2;
+    private int upgradeCost = 25;
+    private int autoClicker;
     private int autoClikerCost = 10;
     private DispatcherTimer timer;
     
@@ -52,48 +52,43 @@ public partial class MainWindow : Window
         {
             MessageBox.Show("Вау, ну ты крутой","тип ачивка");
         }
-        click += PowerClick;
+        click += powerClick;
         Score.Content = "Кликов: " + click.ToString();
     }
     
     private void Powerup_OnClickp_OnClick(object sender, RoutedEventArgs e)
     {
-        if (click >= 5)
-        { 
-           var result = MessageBox.Show("Need POWER X5?","POwer",  MessageBoxButton.YesNo, MessageBoxImage.Question);
-           if (result == MessageBoxResult.Yes)
-           {
-               if (click >=UpgradeCost)
-               {
-                   click -= UpgradeCost;
-                   UpgradeCost *= UpgradePrice;
-                   MessageBox.Show("POWER!", "power " + PowerClick.ToString());
-                   PowerClick = PowerClick * 5; 
-                   Score.Content = "Кликов: " + click.ToString();
-               }
-               else
-               {
-                   var b = (click <UpgradeCost);
-                   MessageBox.Show("Что не хватает? Иди работай.","power");
-               }
-           }
-           else if (result == MessageBoxResult.No)
-           {
-               click -= 5;
-               PowerClick++;
-               MessageBox.Show("POWER","power " );
-               Score.Content = "Кликов: " + click.ToString();
-           }
+        if (click < 5) return;
+        var result = MessageBox.Show("Need POWER X5?","POwer",  MessageBoxButton.YesNo, MessageBoxImage.Question);
+        switch (result)
+        {
+            case MessageBoxResult.Yes when click >=upgradeCost:
+                click -= upgradeCost;
+                upgradeCost *= upgradePrice;
+                MessageBox.Show("POWER!", "power " + powerClick.ToString());
+                powerClick = powerClick * 5; 
+                Score.Content = "Кликов: " + click.ToString();
+                break;
+            case MessageBoxResult.Yes:
+            {
+                var b = (click <upgradeCost);
+                MessageBox.Show("Что не хватает? Иди работай.","power");
+                break;
+            }
+            case MessageBoxResult.No:
+                click -= 5;
+                powerClick++;
+                MessageBox.Show("POWER","power " );
+                Score.Content = "Кликов: " + click.ToString();
+                break;
         }
     }
 
     private void Auto_OnClick(object sender, RoutedEventArgs e)
     {
-        if (click >= 10)
-        {
-            click -= 10;
-            autoClicker++;
-            MessageBox.Show("Работяга: " + clickPerSecond.ToString());
-        }
+        if (click < 10) return;
+        click -= 10;
+        autoClicker++;
+        MessageBox.Show("Работяга: " + clickPerSecond.ToString());
     }
 }
